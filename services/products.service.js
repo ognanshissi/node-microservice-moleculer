@@ -1,20 +1,11 @@
 "use strict";
 
 const DbService = require('moleculer-db');
+const MongoAdapter = require("moleculer-db-adapter-mongo");
 
 module.exports = {
 	name: "products",
 	mixins: [DbService],
-
-	actions: {
-
-		get: {
-			params: {
-				id: "string"
-			},
-			handler(ctx) {
-				return `${ctx.params.id}`;
-			}
-		}
-	}
+	adapter: new MongoAdapter("mongodb://localhost/my-first-service"),
+	collection: "products",
 };
