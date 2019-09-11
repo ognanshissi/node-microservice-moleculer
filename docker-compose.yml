@@ -33,6 +33,19 @@ services:
     networks:
       - internal
 
+  products:
+    build:
+      context: .
+    image: my-first-service
+    container_name: my-first-service-products
+    env_file: docker-compose.env
+    environment:
+      SERVICES: products
+    labels:
+      - "traefik.enable=false"
+    networks:
+      - internal
+
   traefik:
     image: traefik
     container_name: traefik
